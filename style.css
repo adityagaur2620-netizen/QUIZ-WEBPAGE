@@ -1,0 +1,94 @@
+body {
+  font-family: sans-serif;
+  background: linear-gradient(to right, #155799, #159957); 
+  color: whitesmoke;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+nav {
+  color: rgb(228, 236, 236);
+  padding: 30px ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+nav .user {
+  font-weight: 900;
+  text-align: center;
+  transform: translateX(-50%);
+  font-size: 28px;
+}
+nav .left,
+nav .right {
+  flex: 0 0 auto;
+}
+
+nav button {
+  background-color: rgb(76, 131, 80);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.items {
+  flex:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  text-align: center;
+  width: 320px;
+}
+
+.card h1 {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+label {
+  font-size: 16px;
+  color: #eee;
+  float: left;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  font-size: 16px;
+}
+
+button {
+  background-color: #e63946;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 6px;
+  margin: 10px 0;
+  width: 100%;
+  font-size: 18px;
+  border: none;
+}
+
+button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
