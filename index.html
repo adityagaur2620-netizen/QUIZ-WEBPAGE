@@ -29,5 +29,28 @@
 
     </div>
   </div>
-    
+  <div class="quizSection" id="main">
+    <div class="testbar">
+      <span id="attemptedCount" class="attempted">Attempted: 0</span>
+      <span id="unattemptedCount" class="unattempted">Unattempted: 0</span>
+      <span id="Review" class="Review">Review: 0</span>
+    </div>
+    <div class="progress" id="progressBar"></div>
+    <div class="question-area">
+      <p id="questionText" class="question"></p>
+      <div id="options" class="options"></div>
+      <button id="markedReview" aria-label="mark question for review" tabindex="0">Mark for Review</button>
+      <div class="more-button">
+        <button id="nextBtn" aria-label="Next question" tabindex="0"> ➡</button>
+        <button id="prevBtn" aria-label="Prev question" tabindex="0"> ⬅</button>
+      </div>
+    </div>
+    <button id="endBtn" aria-label="endQuiz" tabindex="0">END</button>
+  </div>
+  <div id="resultSection" class="hidden">
+    <h2>Quiz Finished!</h2>
+    <p id="finalScore"></p>
+  </div>
+  <script src="script.js"></script>
 </body>
+</html>

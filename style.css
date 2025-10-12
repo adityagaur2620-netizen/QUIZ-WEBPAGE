@@ -92,3 +92,74 @@ button:hover {
   opacity: 0.8;
   cursor: pointer;
 }
+.quizSection {
+  display: none; /* hidden until login */
+  padding: 20px;
+}
+
+.testbar {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  margin: 20px 0;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.5);
+}
+
+.question-area {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 8px;
+}
+
+.question {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.options button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  background: #222;
+  border-radius: 5px;
+  width: 12px 14px;
+  text-align: left;
+}
+.options button.selected {
+  background: #444;
+  border: 2px solid #00ffcc;
+}
+.options button.correct ,.options button .incorrect{
+  background: green;
+}
+
+.more-button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#endBtn {
+  margin-top: 20px;
+  background: darkred;
+}
+.option-btn {
+  display:block;
+  width:100%;
+  margin:6px 0;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  background:#fff;
+  text-align:left;
+}
+.option-btn.selected { box-shadow:0 0 0 3px rgba(10, 13, 18, 0.15); }
+.option-btn.correct { background:#16a34a; color:white; }
+.option-btn.incorrect { background:#16a34a; color:white; }
+.progress-dot { margin:3px; width:34px; height:34px; border-radius:50%; border:1px solid #ccc; background:#f3f4f6; cursor:pointer; }
+.progress-dot.attempted { background:#28bc5c; }
+.progress-dot.review { background:#e9d5ff; }
+.progress-dot.current { outline:3px solid rgba(59,130,246,0.3); }
+.hidden { display:none; }
