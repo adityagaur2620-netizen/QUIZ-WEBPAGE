@@ -1,6 +1,6 @@
 const questions = [
   {question:"Capital of France?",options:["Berlin","Madrid","Paris","Rome"],answer:2},
-  {question:"2+2=?",options:["3","4","5","22"],answer:1},
+  {question:"2+8=?",options:["9","10","11","14"],answer:1},
   {question:"Largest planet?",options:["Mars","Earth","Jupiter","Venus"],answer:2},
   {question:"HTML stands for?",options:["HyperText Markup Language","HighText Machine Language","Hyperlink Markup","None"],answer:0},
   {question:"JS is ___?",options:["Language","Framework","OS","Database"],answer:0},
@@ -11,7 +11,6 @@ const questions = [
   {question:"Sun rises from?",options:["West","East","North","South"],answer:1}
 ];
 
-// DOM Elements
 const loginSection = document.getElementById('Signin');
 const loginForm = document.getElementById('loginForm');
 const quizSection = document.getElementById('main');
@@ -19,11 +18,14 @@ const resultSection = document.getElementById('resultSection');
 const navbarUser = document.getElementById('navuser');
 const questionText = document.getElementById('questionText');
 const optionsDiv = document.getElementById('options');
-const markReviewBtn = document.getElementById('markReviewBtn');
+const markReviewBtn = document.getElementById('markedReview');
+const reviewCount = document.getElementById('Review');
+
+
 const progressBar = document.getElementById('progressBar');
 const attemptedCount = document.getElementById('attemptedCount');
 const unattemptedCount = document.getElementById('unattemptedCount');
-const reviewCount = document.getElementById('ReviewCount');
+
 const endBtn = document.getElementById('endBtn');
 const timerEl = document.getElementById('timer');
 const toggleMode = document.getElementById('toggleMode');
@@ -35,7 +37,7 @@ let username = "";
 let currentQ = 0;
 let userAnswers = Array(questions.length).fill(null);
 let markedReview = new Set();
-let timer, timeLeft = 300;
+let timer, timeLeft = 600;
 const FIXED_PASSWORD = "quiz123";  
 
 // LOGIN FUNCTION
@@ -107,6 +109,7 @@ function renderProgress() {
     dot.className = "dot";
     if (userAnswers[i] !== null) dot.classList.add('attempted');
     if (markedReview.has(i)) dot.classList.add('review');
+    if (i === currentQ) dot.classList.add('current');
     dot.addEventListener('click', () => loadQuestion(i));
     progressBar.appendChild(dot);
   });
@@ -134,7 +137,6 @@ function updateNavButtons() {
   nextBtn.disabled = currentQ === questions.length - 1;
 }
 
-// MARK REVIEW
 markReviewBtn.addEventListener('click', () => {
   if (markedReview.has(currentQ)) markedReview.delete(currentQ);
   else markedReview.add(currentQ);
@@ -149,7 +151,7 @@ function startTimer() {
     timeLeft--;
     const min = Math.floor(timeLeft / 60);
     const sec = timeLeft % 60;
-    timerEl.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
+    timerEl.textContent = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
     if (timeLeft <= 0) {
       clearInterval(timer);
       endQuiz();
@@ -157,22 +159,27 @@ function startTimer() {
   }, 1000);
 }
 
-// END QUIZ
+
 endBtn.addEventListener('click', endQuiz);
 
- function endQuiz(){
-    clearInterval(timer);
-    quizSection.classList.add('hidden');
-    resultSection.classList.remove('hidden');
-    let score=0;
-    userAnswers.forEach((a,i)=>{
-      if(a===questions[i].answer) score+=4;
-      else if(a===null) score+=0;
-      else score-=1;
-    });
+function endQuiz() {
+  clearInterval(timer);
 
-// THEME TOGGLE
-toggleMode.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-  toggleMode.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-})}
+  let score = 0;
+  userAnswers.forEach((a,i)=>{
+    if(a===questions[i].answer) score+=4;
+    else if(a!==null) score-=1;
+  });
+
+  quizSection.classList.add('hidden');
+  resultSection.classList.remove('hidden');
+  document.getElementById('finalScore').textContent = `Your final score is ${score}/${questions.length * 4}`;
+}
+
+
+toggleMode.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  const isDark = document.body.classList.contains("dark");
+  toggleMode.textContent = isDark ? "☀️" : "🌙";
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+});
